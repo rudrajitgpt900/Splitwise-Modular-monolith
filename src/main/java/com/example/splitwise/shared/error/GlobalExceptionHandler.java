@@ -18,4 +18,16 @@ public class GlobalExceptionHandler {
         ApiError error = new ApiError("VALIDATION_ERROR", exception.getMessage(), Instant.now());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ApiError> handleNotFound(NotFoundException exception) {
+        ApiError error = new ApiError("NOT_FOUND", exception.getMessage(), Instant.now());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+
+    @ExceptionHandler(ConflictException.class)
+    public ResponseEntity<ApiError> handleConflict(ConflictException exception) {
+        ApiError error = new ApiError("CONFLICT", exception.getMessage(), Instant.now());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
 }
