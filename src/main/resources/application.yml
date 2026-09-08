@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: splitwise-app
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/splitwise_app?createDatabaseIfNotExist=true&serverTimezone=UTC}
+    username: ${DB_USERNAME:splitwise_app}
+    password: ${DB_PASSWORD:splitwise_local}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        "[format_sql]": true
+  flyway:
+    enabled: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${SECURITY_JWT_ISSUER_URI:}
+          jwk-set-uri: ${SECURITY_JWT_JWK_SET_URI:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+server:
+  error:
+    include-message: never
+
+# Security defaults for local dev: enable HTTP Basic with an in-memory user.
+security:
+  auth:
+    basic:
+      enabled: ${SECURITY_BASIC_ENABLED:true}
+      username: ${SECURITY_BASIC_USERNAME:local}
+      password: ${SECURITY_BASIC_PASSWORD:localpass}
+      role: ${SECURITY_BASIC_ROLE:USER}
+    jwt:
+      enabled: ${SECURITY_JWT_ENABLED:false}

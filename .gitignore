@@ -1,0 +1,47 @@
+# macOS
+.DS_Store
+
+# IDEs and editors
+.idea/
+*.iml
+.vscode/
+*.ipr
+*.iws
+
+# Java / build outputs
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.tmp
+*.swp
+*.swo
+hs_err_pid*
+replay_pid*
+
+# Maven/Gradle
+/target/
+/build/
+.gradle/
+# Maven wrapper jars (downloaded on demand by wrapper)
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper-downloader.jar
+
+dependency-reduced-pom.xml
+
+# Logs and runtime
+logs/
+*.pid
+
+# Docker / compose
+**/.env
+
+# Coverage / reports
+coverage/
+/site/
+.surefire-*
+surefire-reports/
+
+# OS / misc
+Thumbs.db

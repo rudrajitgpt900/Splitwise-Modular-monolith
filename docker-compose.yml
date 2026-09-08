@@ -1,0 +1,21 @@
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: splitwise-mysql
+    environment:
+      MYSQL_DATABASE: splitwise_app
+      MYSQL_USER: splitwise_app
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-splitwise_local}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-splitwise_root_local}
+    ports:
+      - "3306:3306"
+    volumes:
+      - splitwise-mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u splitwise_app -p$${MYSQL_PASSWORD} --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  splitwise-mysql-data:
